@@ -1,3 +1,6 @@
-import setuptools
+from setuptools import setup, find_packages
 
-setuptools.setup()
+setup(
+name='edc_registration',
+packages=find_packages())
+
