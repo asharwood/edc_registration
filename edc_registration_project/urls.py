@@ -16,14 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path, include
 from register.views import register_user, select_dataset, thanks
+from django.shortcuts import HttpResponse
+
+def health_view(request):
+    return HttpResponse("OK")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path("health/", health_view, name="health"),
     path('register/', select_dataset),
     re_path(r'^register/user/(?P<datasetid>\d+)', register_user),
 
     path('register/thanks/', thanks),
+    
 
     # Uncomment the admin/doc line below to enable admin documentation:
 #    path('admin/doc/',  django.contrib.admindocs.urls),
