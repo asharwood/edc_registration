@@ -24,6 +24,7 @@ def health_view(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("health/", health_view, name="health"),
+    path('', select_dataset),
     path('register/', select_dataset),
     re_path(r'^register/user/(?P<datasetid>\d+)', register_user),
 
