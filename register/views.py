@@ -54,7 +54,7 @@ def register_user(request, datasetid):
          emailMessage = emailTemplate.render(d)
          subject = 'EDC dataset registration: %s' % u.condition.dataset.name
          fromAddress = u.emailaddress
-         send_mail(subject, emailMessage, fromAddress, settings.EDC_NOTIFY_EMAIL )
+         send_mail(subject, emailMessage, fromAddress, (settings.EDC_NOTIFY_EMAIL,) )
 
          emailTemplate = get_template('email_user.txt')
          d = {'user': u}
