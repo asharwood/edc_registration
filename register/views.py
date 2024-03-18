@@ -4,16 +4,13 @@ from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.template import Context
 from django.db.models import Q
+from django.conf import settings
 
 from datetime import *
 from pytz import timezone
 
 from register.models import *
 from register.forms import UserForm
-
-
-#INFO_EMAIL = ('EDCmanager@stfc.ac.uk',)
-INFO_EMAIL = ('andrew.harwood@stfc.ac.uk',)
 
 def select_dataset(request):
 
@@ -57,7 +54,7 @@ def register_user(request, datasetid):
          emailMessage = emailTemplate.render(d)
          subject = 'EDC dataset registration: %s' % u.condition.dataset.name
          fromAddress = u.emailaddress
-         send_mail(subject, emailMessage, fromAddress, INFO_EMAIL)
+         send_mail(subject, emailMessage, fromAddress, settings.EDC_NOTIFY_EMAIL )
 
          emailTemplate = get_template('email_user.txt')
          d = {'user': u}
